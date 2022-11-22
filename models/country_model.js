@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const CountrySchema = new Schema({
     name: {type: String, required: true},
-    population: {type: Number},
-    area: {type: Number},
+    population: {type: String},
+    area: {type: String},
     continent: {type: String, required: true},
-    gdp: {type: Number}
+    gdp: {type: String}
 });
 
 CountrySchema.virtual('url').get(function() {

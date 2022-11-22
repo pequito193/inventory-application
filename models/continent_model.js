@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const ContinentSchema = new Schema({
     name: {type: String, required: true},
-    population: {type: Number},
-    area: {type: Number},
-    countries: {type: Number}
+    population: {type: String},
+    area: {type: String},
+    countries: {type: String}
 });
 
 ContinentSchema.virtual('url').get(function() {
