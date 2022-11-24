@@ -56,4 +56,17 @@ a:visited {
   font-weight: normal;
   text-align: center;
   margin-top: 240px;
+  padding: 20px;
+}
+
+@media (max-width: 550px) {
+  .header {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    font-size: 1.6rem;
+  }
 }

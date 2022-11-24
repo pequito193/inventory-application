@@ -2,10 +2,12 @@ doctype html
 html
   head
     title Geomaps
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='icon', href='/images/europe.png')
   body
     header.header
+      a.clickable(href='/') Home
       a.clickable(href='/continents') Continents
       a.clickable(href='/countries') Countries
     div.background
