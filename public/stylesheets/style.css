@@ -1,8 +1,59 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
 }
 
-a {
-  color: #00B7FF;
+body {
+  background-color: rgb(252, 252, 252);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  background-color: rgb(245, 47, 47);
+  box-shadow: 0 -4px 10px inset rgb(206, 5, 5);
+  color: white;
+  font-size: 2rem;
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 10;
+}
+
+.clickable:hover {
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.background {
+  background: url('./../images//worldmap.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  opacity: 10%;
+  position: absolute;
+  top: 120px;
+  z-index: -1;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 240px;
 }
