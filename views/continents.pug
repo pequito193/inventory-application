@@ -1,4 +1,11 @@
 extends layout
 
 block content
-    h1 continents
+    h1 Continents 
+    ul 
+        each continent in continent_list 
+            li
+                a(href=continent.url) #{continent.name}
+
+        else
+            p There are no continents
