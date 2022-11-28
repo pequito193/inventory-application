@@ -14,4 +14,4 @@ CountrySchema.virtual('url').get(function() {
     return `/catalog/countries/${this._id}`;
 })
 
-module.exports = mongoose.model('CountrySchema', CountrySchema);
+module.exports = mongoose.model('Countries', CountrySchema);

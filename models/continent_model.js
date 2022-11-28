@@ -13,4 +13,4 @@ ContinentSchema.virtual('url').get(function() {
     return `/catalog/continents/${this._id}`;
 })
 
-module.exports = mongoose.model('ContinentSchema', ContinentSchema);
+module.exports = mongoose.model('Continents', ContinentSchema);
