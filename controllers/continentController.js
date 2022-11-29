@@ -15,10 +15,20 @@ exports.continent_list = function (req, res, next) {
 // Displays continent details
 exports.continent_details = function (req, res, next) {
     Continent.find({name: req.params.id})
-    .exec(function(err, continent) {
+    .exec(function(err, results) {
         if (err) {
-            res.render('error', {message: `There is no continent named ${req.params.id}`, redirect: '/catalog/continents'});
+            res.redirect('index');
+            return;
         }
-        res.render('singleContinent', {continent: continent});
+        if (results == null) {
+            res.render('error', {message: `There is no continent named ${req.params.id}`, redirect: '/catalog/continents'});
+            return;
+        }
+        res.render('singleContinent', {data: results});
     });
 };
+
+// Create a new continent
+exports.continent_new = function (req, res, next) {
+    res.render('newContinent');
+}

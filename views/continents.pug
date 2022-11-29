@@ -1,11 +1,14 @@
 extends layout
 
 block content
-    h1 Continents 
-    ul 
+    h1.continent-title Continents 
+    ul.continent-list 
         each continent in continent_list 
             li
-                a(href=continent.url) #{continent.name}
+                a.continent-link(href=continent.url) #{continent.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')}
 
         else
             p There are no continents
+    
+    a.new-form(href='/catalog/new-continent')
+        button.button New Continent

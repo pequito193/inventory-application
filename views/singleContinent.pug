@@ -1,8 +1,11 @@
 extends layout
 
 block content
-    h1=continent
-    p.info=continent.name
-    p.info Population = #{continent.population}
-    p.info Area = #{continent.area}km^2
-    p.info Number of Countries = #{continent.countries}
+    h1.continent-title=data[0].name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
+    div.info-wrapper
+        p.info Population = #{data[0].population}
+        p.info Area = #{data[0].area}km²
+        p.info Number of Countries = #{data[0].countries}
+    a.go-back(href='/catalog/continents')
+        button.button Edit
+        button.button Go Back
