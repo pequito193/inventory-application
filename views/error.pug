@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
-  a.redirect(href=`${redirect}`) Go Back
+  h1.title= message
+  a.buttons(href=`${redirect}`) 
+    button.button Go Back

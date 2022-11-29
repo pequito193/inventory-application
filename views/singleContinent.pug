@@ -1,11 +1,13 @@
 extends layout
 
 block content
-    h1.continent-title=data[0].name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
+    h1.title=data[0].name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
     div.info-wrapper
         p.info Population = #{data[0].population}
         p.info Area = #{data[0].area}km²
         p.info Number of Countries = #{data[0].countries}
-    a.go-back(href='/catalog/continents')
+    div.buttons
         button.button Edit
-        button.button Go Back
+        button.button Delete
+        a(href='/catalog/continents')
+            button.button Go Back
