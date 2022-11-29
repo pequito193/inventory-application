@@ -10,7 +10,7 @@ const ContinentSchema = new Schema({
 });
 
 ContinentSchema.virtual('url').get(function() {
-    return `/catalog/continents/${this._id}`;
+    return `/catalog/continents/${this.name}`;
 })
 
 module.exports = mongoose.model('Continents', ContinentSchema);

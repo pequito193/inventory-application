@@ -11,7 +11,7 @@ const CountrySchema = new Schema({
 });
 
 CountrySchema.virtual('url').get(function() {
-    return `/catalog/countries/${this._id}`;
+    return `/catalog/countries/${this.name}`;
 })
 
 module.exports = mongoose.model('Countries', CountrySchema);
