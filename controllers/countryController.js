@@ -1,7 +1,7 @@
 const Country = require('../models/country_model');
 
 // Displays list of continents
-exports.country_list = (req, res, next) => {
+exports.GET_country_list = (req, res, next) => {
     Country.find({}, 'name')
     .sort({name: 1})
     .exec(function(err, list_countries) {
@@ -13,7 +13,7 @@ exports.country_list = (req, res, next) => {
 };
 
 // Displays continent details
-exports.country_details = (req, res, next) => {
+exports.GET_country_details = (req, res, next) => {
     Country.find({name: req.params.id})
     .exec(function(err, country) {
         if (err) {
