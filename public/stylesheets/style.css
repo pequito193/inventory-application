@@ -70,9 +70,9 @@ a:visited {
   margin-top: 240px;
 }
 
-.continent-list-title {
+.continent-title {
   font-size: 2rem;
-  margin-top: 30px;
+  margin: 30px;
   text-align: center;
 }
 
@@ -93,12 +93,14 @@ a:visited {
   font-size: 1.5rem;
 }
 
+.go-back,
 .new-form {
   display: flex;
   justify-content: center;
+  gap: 24px;
 }
 
-.new-button {
+.button {
   color: rgb(102, 102, 102);
   border: 2px solid rgb(214, 214, 214);
   padding: 6px 12px;
@@ -106,11 +108,19 @@ a:visited {
   transition: 0.25s;
 }
 
-.new-button:hover {
+.button:hover {
   cursor: pointer;
   transform: scale(1.025, 1.025);
   color: rgb(82, 82, 82);
   border: 2px solid rgb(172, 172, 172);
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
 
