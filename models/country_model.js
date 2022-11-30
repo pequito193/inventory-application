@@ -7,7 +7,6 @@ const CountrySchema = new Schema({
     population: {type: String},
     area: {type: String},
     continent: {type: String, required: true},
-    gdp: {type: String}
 });
 
 CountrySchema.virtual('url').get(function() {

@@ -20,13 +20,27 @@ router.post('/new-continent', continentController.POST_continent_new)
 // GET request for continent delete page
 router.get('/continents/:id/delete', continentController.GET_continent_delete)
 
-// DELETE request to delete a continent
+// POST request to delete a continent
 router.post('/continents/:id/delete', continentController.POST_continent_delete)
+
+// ---------------------------------------------------------------------------------------------------------------
 
 // GET request for country list
 router.get('/countries', countryController.GET_country_list);
 
 // GET request for country details
 router.get('/countries/:id', countryController.GET_country_details);
+
+// GET request for new country form
+router.get('/new-country', countryController.GET_country_new)
+
+// POST request to create a new country
+router.post('/new-country', countryController.POST_country_new)
+
+// GET request for country delete page
+router.get('/countries/:id/delete', countryController.GET_country_delete)
+
+// POST request to delete a country
+router.post('/countries/:id/delete', countryController.POST_country_delete)
 
 module.exports = router;
