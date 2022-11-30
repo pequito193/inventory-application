@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+
+    div.buttons
+        form(method='post')
+            button.button(type='submit') Submit
+        a(href=`catalog/continents/${data[0].name}`)
+            button.button Cancel

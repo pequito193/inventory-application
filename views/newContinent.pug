@@ -7,4 +7,7 @@ block content
         input.input(name='population' placeholder='Population' required='true' type='number')
         input.input(name='area' placeholder='Area' required='true' type='number')
         input.input(name='countries' placeholder='Countries' required='true' type='number')
-        button.button(type='submit') Submit
+        div.buttons
+            button.button(type='submit') Submit
+            a(href='/catalog/continents')
+                button.button(type='button') Cancel

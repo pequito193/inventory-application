@@ -7,7 +7,8 @@ block content
         p.info Area = #{data[0].area}km²
         p.info Number of Countries = #{data[0].countries}
     div.buttons
-        button.button Edit
+    a(href=`/catalog/continents/${data[0].name}/edit`)
+            button.button Edit
         a(href=`/catalog/continents/${data[0].name}/delete`)
             button.button Delete
         a(href='/catalog/continents')
