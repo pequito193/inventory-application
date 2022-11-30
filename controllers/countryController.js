@@ -14,7 +14,7 @@ exports.GET_country_list = function (req, res, next) {
 
 // Displays country details
 exports.GET_country_details = function (req, res, next) {
-    Country.find({name: req.params.id})
+    Country.findOne({name: req.params.id})
     .exec(function(err, results) {
         if (err) {
             res.redirect('index');
@@ -38,11 +38,10 @@ exports.POST_country_new = function (req, res, next) {
     const name = req.body.name.toLowerCase();
     const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
     const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
-    const continent = req.body.continent;
+    const continent = req.body.continent.toLowerCase();
 
     // Check if the country already exists
     Country.countDocuments({name: name}, function(err, count) {
-        console.log(count);
         if(count > 0) {
             res.render('error', {message: 'Country already exists!'});
             return;
@@ -81,4 +80,16 @@ exports.POST_country_delete = function (req, res, next) {
         }
     })
     res.redirect('/catalog/countries');
+}
+
+// Display the edit country page
+exports.GET_country_edit = function (req, res, next) {
+    Country.findOne({name: req.params.id})
+    .exec(function(err, results) {
+        if (err) {
+            res.redirect('error');
+            return;
+        }
+        res.render('editCountry', {data: results});
+    });
 }

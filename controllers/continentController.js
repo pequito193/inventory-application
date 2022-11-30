@@ -14,10 +14,10 @@ exports.GET_continent_list = function (req, res, next) {
 
 // Displays continent details
 exports.GET_continent_details = function (req, res, next) {
-    Continent.find({name: req.params.id})
+    Continent.findOne({name: req.params.id})
     .exec(function(err, results) {
         if (err) {
-            res.redirect('index');
+            res.redirect('error');
             return;
         }
         if (results == null) {
@@ -42,7 +42,6 @@ exports.POST_continent_new = function (req, res, next) {
 
     // Check if the continent already exists
     Continent.countDocuments({name: name}, function(err, count) {
-        console.log(count);
         if(count > 0) {
             res.render('error', {message: 'Continent already exists!'});
             return;
@@ -81,4 +80,25 @@ exports.POST_continent_delete = function (req, res, next) {
         }
     })
     res.redirect('/catalog/continents');
+}
+
+// Display the edit continent page
+exports.GET_continent_edit = function (req, res, next) {
+    Continent.findOne({name: req.params.id})
+    .exec(function(err, results) {
+        if (err) {
+            res.redirect('error');
+            return;
+        }
+        res.render('editContinent', {data: results});
+    });
+}
+
+// Edit the continent
+exports.POST_continent_edit = function (req, res, next) {
+    const name = req.body.name;
+    const population = req.body.population;
+    const area = req.body.area;
+    const countries = req.body.countries;
+    Continent.findOneAndUpdate({name: req.params.id})
 }

@@ -23,6 +23,11 @@ router.get('/continents/:id/delete', continentController.GET_continent_delete)
 // POST request to delete a continent
 router.post('/continents/:id/delete', continentController.POST_continent_delete)
 
+// GET request for continent edit page
+router.get('/continents/:id/edit', continentController.GET_continent_edit)
+
+// POST request to edit a continent
+
 // ---------------------------------------------------------------------------------------------------------------
 
 // GET request for country list
@@ -42,5 +47,8 @@ router.get('/countries/:id/delete', countryController.GET_country_delete)
 
 // POST request to delete a country
 router.post('/countries/:id/delete', countryController.POST_country_delete)
+
+// GET request for country edit page
+router.get('/countries/:id/edit', countryController.GET_country_edit)
 
 module.exports = router;
