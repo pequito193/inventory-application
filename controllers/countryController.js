@@ -1,24 +1,84 @@
 const Country = require('../models/country_model');
 
-// Displays list of continents
-exports.GET_country_list = (req, res, next) => {
+// Displays list of countries
+exports.GET_country_list = function (req, res, next) {
     Country.find({}, 'name')
-    .sort({name: 1})
+    .sort({ name: 1 })
     .exec(function(err, list_countries) {
         if (err) {
             return next(err);
         }
-        res.render('countries', {countries: list_countries});
+        res.render('countries', {country_list: list_countries});
     });
 };
 
-// Displays continent details
-exports.GET_country_details = (req, res, next) => {
+// Displays country details
+exports.GET_country_details = function (req, res, next) {
     Country.find({name: req.params.id})
-    .exec(function(err, country) {
+    .exec(function(err, results) {
         if (err) {
-            res.render('error', {message: `There is no country named ${req.params.id}`, redirect: '/catalog/countries'});
+            res.redirect('index');
+            return;
         }
-        res.render('singleCountry', {country: country});
+        if (results == null) {
+            res.render('error', {message: `There is no country named ${req.params.id}`});
+            return;
+        }
+        res.render('singleCountry', {data: results});
     });
 };
+
+// Display new country form
+exports.GET_country_new = function (req, res, next) {
+    res.render('newCountry');
+}
+
+// Create new country
+exports.POST_country_new = function (req, res, next) {
+    const name = req.body.name.toLowerCase();
+    const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+    const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+    const continent = req.body.continent;
+
+    // Check if the country already exists
+    Country.countDocuments({name: name}, function(err, count) {
+        console.log(count);
+        if(count > 0) {
+            res.render('error', {message: 'Country already exists!'});
+            return;
+        }
+    
+        else {
+            // Create the new country
+            const country = new Country({
+                name,
+                population,
+                area,
+                continent
+            });
+
+            country.save((err) => {
+                if (err) {
+                    return next(err);
+                }
+            });
+
+            res.redirect('/catalog/countries');
+        }
+    })
+}
+
+// Display the delete country page
+exports.GET_country_delete = function (req, res, next) {
+    res.render('deleteCountry', {country: req.params.id})
+}
+
+// Delete the country
+exports.POST_country_delete = function (req, res, next) {
+    Country.findOneAndRemove({name: req.params.id}, (err) => {
+        if (err) {
+            return next(err);
+        }
+    })
+    res.redirect('/catalog/countries');
+}

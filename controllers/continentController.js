@@ -21,7 +21,7 @@ exports.GET_continent_details = function (req, res, next) {
             return;
         }
         if (results == null) {
-            res.render('error', {message: `There is no continent named ${req.params.id}`, redirect: '/catalog/continents'});
+            res.render('error', {message: `There is no continent named ${req.params.id}`});
             return;
         }
         res.render('singleContinent', {data: results});
