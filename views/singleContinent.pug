@@ -8,6 +8,7 @@ block content
         p.info Number of Countries = #{data[0].countries}
     div.buttons
         button.button Edit
-        button.button Delete
+        a(href=`/catalog/continents/${data[0].name}/delete`)
+            button.button Delete
         a(href='/catalog/continents')
             button.button Go Back
