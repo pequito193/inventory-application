@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1.title New Continent
-    form.new-continent-form(method='post')
+    form.form(method='post')
         input.input(name ='name' placeholder='Name' required='true' maxlength=30 type='text')
         input.input(name='population' placeholder='Population' required='true' type='number')
         input.input(name='area' placeholder='Area' required='true' type='number')
