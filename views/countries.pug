@@ -2,10 +2,13 @@ extends layout
 
 block content
     h1.title Countries
-    ul 
-        each country in countries 
+    ul.list
+        each country in country_list
             li
-                a(href=country.url) #{country.name}
+                a.link(href=country.url) #{country.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')}
 
         else
             p There are no countries
+
+    a.new-form(href='/catalog/new-country')
+        button.button New Country

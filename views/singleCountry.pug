@@ -1,9 +1,14 @@
 extends layout
 
 block content
-    h1=country
-    p.info=country.name
-    p.info Population = #{country.population}
-    p.info Area = #{country.area}km^2
-    p.info Continent = #{country.continent}
-    p.info GDP = #{country.gdp}
+    h1.title=data[0].name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
+    div.info-wrapper
+        p.info Population = #{data[0].population}
+        p.info Area = #{data[0].area}km²
+        p.info Continent = #{data[0].continent}
+    div.buttons
+        button.button Edit
+        a(href=`/catalog/countries/${data[0].name}/delete`)
+            button.button Delete
+        a(href='/catalog/countries')
+            button.button Go Back

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    p.delete-message Are you sure you want to delete #{country}?
+    div.buttons
+        form(method='post' action=`/catalog/countries/${country}/delete`)
+            button.button(type='submit') Yes
+        a(href=`/catalog/countries/${country}`)
+            button.button No
