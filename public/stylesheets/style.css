@@ -105,6 +105,11 @@ a:visited {
   font-size: 1.6rem;
 }
 
+.delete-message {
+  text-align: center;
+  margin: 20px auto 30px;
+}
+
 .buttons,
 .new-form {
   display: flex;
