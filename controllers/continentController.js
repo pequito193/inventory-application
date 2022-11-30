@@ -35,31 +35,50 @@ exports.GET_continent_new = function (req, res, next) {
 
 // Create new continent
 exports.POST_continent_new = function (req, res, next) {
-    const name = req.body.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
+    const name = req.body.name.toLowerCase();
     const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
     const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
     const countries = req.body.countries;
-    console.log(Continent.countDocuments({name: name}));
 
-    // Check if the named continent already exists
-    if (Continent.find({name: name})) {
-        res.render('error', {message: 'Continent already exists!', redirect: '/catalog/continents'});
-        return;
-    }
+    // Check if the continent already exists
+    Continent.countDocuments({name: name}, function(err, count) {
+        console.log(count);
+        if(count > 0) {
+            res.render('error', {message: 'Continent already exists!'});
+            return;
+        }
+    
+        else {
+            // Create the new continent
+            const continent = new Continent({
+                name,
+                population,
+                area,
+                countries
+            });
 
-    // Create the new continent
-    const continent = new Continent({
-        name,
-        population,
-        area,
-        countries
-    });
+            continent.save((err) => {
+                if (err) {
+                    return next(err);
+                }
+            });
 
-    continent.save((err) => {
+            res.redirect('/catalog/continents');
+        }
+    })
+}
+
+// Display the delete continent page
+exports.GET_continent_delete = function (req, res, next) {
+    res.render('deleteContinent', {continent: req.params.id})
+}
+
+// Delete the continent
+exports.POST_continent_delete = function (req, res, next) {
+    Continent.findOneAndRemove({name: req.params.id}, (err) => {
         if (err) {
             return next(err);
         }
-    });
-
-    res.redirect('continents');
+    })
+    res.redirect('/catalog/continents');
 }
