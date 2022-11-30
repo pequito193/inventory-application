@@ -2,10 +2,10 @@ extends layout
 
 block content
     h1.title Continents 
-    ul.continent-list 
+    ul.list 
         each continent in continent_list 
             li
-                a.continent-link(href=continent.url) #{continent.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')}
+                a.link(href=continent.url) #{continent.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')}
 
         else
             p There are no continents
