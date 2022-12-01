@@ -36,8 +36,8 @@ exports.GET_continent_new = function (req, res, next) {
 // Create new continent
 exports.POST_continent_new = function (req, res, next) {
     const name = req.body.name.toLowerCase();
-    const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
-    const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+    const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const countries = req.body.countries;
 
     // Check if the continent already exists
@@ -96,9 +96,19 @@ exports.GET_continent_edit = function (req, res, next) {
 
 // Edit the continent
 exports.POST_continent_edit = function (req, res, next) {
-    const name = req.body.name;
-    const population = req.body.population;
-    const area = req.body.area;
+    const name = req.body.name.toLowerCase();
+    const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const countries = req.body.countries;
-    Continent.findOneAndUpdate({name: req.params.id})
+    Continent.findOneAndUpdate({name: req.params.id}, {$set:{
+        name: name,
+        population: population,
+        area: area,
+        countries: countries
+    }}, {new: true}, (err) => {
+        if(err) {
+            res.redirect('error');
+        }
+    });
+    res.redirect(`/catalog/continents/${req.params.id}`);
 }
