@@ -1,5 +1,9 @@
 const Country = require('../models/country_model');
 
+function stringify(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 // Displays list of countries
 exports.GET_country_list = function (req, res, next) {
     Country.find({}, 'name')
@@ -36,8 +40,8 @@ exports.GET_country_new = function (req, res, next) {
 // Create new country
 exports.POST_country_new = function (req, res, next) {
     const name = req.body.name.toLowerCase();
-    const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const population = stringify(req.body.population);
+    const area = stringify(req.body.area);
     const continent = req.body.continent.toLowerCase();
 
     // Check if the country already exists
@@ -97,15 +101,17 @@ exports.GET_country_edit = function (req, res, next) {
 // Edit the country
 exports.POST_country_edit = function (req, res, next) {
     const name = req.body.name.toLowerCase();
-    const population = req.body.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    const area = req.body.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const population = stringify(req.body.population);
+    const area = stringify(req.body.area);
     const continent = req.body.continent.toLowerCase();
-    Country.findOneAndUpdate({name: req.params.id}, {$set:{
-        name: name,
-        population: population,
-        area: area,
-        continent: continent
-    }}, {new: true}, (err) => {
+    Country.findOneAndUpdate({name: req.params.id}, {$set:
+        {
+            name,
+            population,
+            area,
+            continent
+        }
+    }, {new: true}, (err) => {
         if(err) {
             res.redirect('error');
         }

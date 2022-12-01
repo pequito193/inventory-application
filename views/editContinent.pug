@@ -6,7 +6,7 @@ block content
         input.input(name ='name' value=`${data.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')}` required='true' maxlength=30 type='text')
         input.input(name='population' value=`${Number(data.population.replace(/,/g, ''))}` required='true' type='number')
         input.input(name='area' value=`${Number(data.area.replace(/,/g, ''))}` required='true' type='number')
-        input.input(name='countries' value=`${data.countries}` required='true' type='number')
+        input.input(name='countries' value=`${Number(data.countries.replace(/,/g, ''))}` required='true' type='number')
         div.buttons
             form(method='post')
                 button.button(type='submit') Submit
